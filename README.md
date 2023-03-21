@@ -14,4 +14,3 @@ npx hardhat run scripts/deploy.js
 ```
 todo
 connect wallet
-checking if meta mask is installed, next time connect wallet
