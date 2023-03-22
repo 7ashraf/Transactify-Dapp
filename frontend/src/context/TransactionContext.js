@@ -3,7 +3,7 @@ import { ethers } from "ethers";
 
 import { contractABI, constractAdress } from "../utils/cons";
 
-export const TransactioContext = React.createContext();
+export const TransactionContext = React.createContext();
 
 const {ethereum} = window
 
@@ -19,7 +19,7 @@ const getEtheriumContract = () => {
 }
 
 export const TransactionProvider = ({ children }) => {
-    const [connectedAccount, setconnectedAccount] = useState('')
+    const [currentAccount, setCurrentAccount] = useState('')
     const checkIfWalletConnected = async ()=>{
         if(window.ethereum && window.ethereum.isMetaMask)
         console.log('yea ')
@@ -39,7 +39,9 @@ export const TransactionProvider = ({ children }) => {
 
             if(!ethereum) return alert('no metamask')
             const accounts = await ethereum.request({method: 'eth_requestAccounts'})
-            setconnectedAccount(accounts[0])
+            setCurrentAccount(accounts[0])
+            console.log(accounts)
+            console.log('connect wallet method reached')
         }catch(error){
             console.log(error)
             throw new Error('no etherium object ')
@@ -52,8 +54,8 @@ export const TransactionProvider = ({ children }) => {
     }, [])
     
     return(
-        <TransactioContext.Provider value={{connectWallet}}>
+        <TransactionContext.Provider value={{connectWallet, currentAccount}}>
             {children}
-        </TransactioContext.Provider>
+        </TransactionContext.Provider>
     )
 }

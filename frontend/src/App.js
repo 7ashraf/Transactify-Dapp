@@ -3,18 +3,16 @@ import './App.css';
 import {ethers} from 'ethers'
 import { useState, useEffect, useContext } from 'react';
 import { constractAdress, contractABI } from './utils/cons';
-import { TransactioContext } from './context/TransactionContext';
+import { TransactionContext } from './context/TransactionContext';
+import Welcome from './Components/Welcome'
 
 
 function App() {
-const {connectedWallet} = useContext(TransactioContext);
-console.log(connectedWallet)
-  
-  
+
   
   return (
     <div className="App">
-      <h1>Hello world</h1>
+      <Welcome />
     </div>
   );
 }
